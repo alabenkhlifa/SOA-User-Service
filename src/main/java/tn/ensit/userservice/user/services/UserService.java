@@ -35,11 +35,11 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        var createdUser = userRepository.save(user);
-        var bio = "";
-        Profile profile = new Profile(createdUser, bio);
+        User savedUser = userRepository.save(user);
+        Profile profile = savedUser.getProfile();
+        profile.setUser(savedUser);
         profileService.createProfile(profile);
-        return createdUser;
+        return savedUser;
     }
 
     public User findById(Long id) {

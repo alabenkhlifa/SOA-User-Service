@@ -1,5 +1,6 @@
 package tn.ensit.userservice.profile.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import tn.ensit.userservice.user.entities.User;
 
@@ -16,6 +17,7 @@ public class Profile {
     private String bio;
 
     @OneToOne
+    @JsonIgnore
     private User user;
 
     protected Profile() {
@@ -44,6 +46,10 @@ public class Profile {
 
     public User getUser() {
         return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
